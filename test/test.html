@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mPaging测试用例,需要服务器环境</title>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="/index.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/ui-default.css"/>
+<style type="text/css">
+/* 黄色皮肤配色 */
+.flip_page.yellow_page { margin-top: 100px;  }
+.flip_page.yellow_page a { }
+.flip_page.yellow_page .now { background: #fc0; border-color: #fc0; color: #fff; }
+.flip_page.orange_page a { border-radius: 2px; }
+.flip_page.orange_page .now { background: #f90; border-color: #f90; color: #fff; }
+</style>
+</head>
+<body>
+<div id="mPaging" class="flip_page yellow_page"></div>
+<script type="text/javascript">
+$( function(){
+    var pager = new kitpage({
+        container: $("#mPaging") ,
+        serverKey: "total",                 // 根据服务器端返回的总记录数，计算总页数
+        defaultLoading: true ,
+        ajaxSetting: {
+            type: "get" ,
+            url:  "/api/test" ,
+            data: { limit: 10 , offset: 0 }
+        }
+    });
+    pager.on("data",function( data ){
+        console.log( data ) ;
+    }).on("error",function(){
+        //console.log( arguments );
+    }).init();
+} ) ;
+</script>
+</body>
+</html>
