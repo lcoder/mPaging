@@ -8,7 +8,7 @@
     }else if( md && define.amd ){
         define( ['require','jquery'] , factory ) ;
     }else if( md && define.cmd ) {
-        define( 'ymdate' , ['jquery'] , factory ) ;
+        define( ['jquery'] , factory ) ;
     }else{
         window.kitpage = factory( function(){ return window.jQuery } ) ;
     }
